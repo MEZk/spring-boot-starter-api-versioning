@@ -1,0 +1,2 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.mezk.spring.boot.starters.api.versioning.ApiVersioningAnnotationAutoConfiguration
