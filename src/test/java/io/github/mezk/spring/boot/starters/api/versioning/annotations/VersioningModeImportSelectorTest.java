@@ -1,4 +1,4 @@
-package io.github.mezk.spring.boot.starters.api.versioning;
+package io.github.mezk.spring.boot.starters.api.versioning.annotations;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.ArgumentMatchers.eq;
@@ -10,10 +10,13 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
+import io.github.mezk.spring.boot.starters.api.versioning.configuration.ApiVersioningAnnotationAutoConfiguration;
+
 public class VersioningModeImportSelectorTest {
+
+    private static final String MODE_ANNOTATION_FIELD_NAME = "mode";
 
     private VersioningModeImportSelector selector;
 
@@ -26,13 +29,12 @@ public class VersioningModeImportSelectorTest {
     public void selectImportsWhenVersionModeIsAnnotation() throws Exception {
         // ARRANGE
         final Map<String, Object> annotationAttributes = new HashMap<>(1);
-        annotationAttributes.put("mode", VersioningMode.ANNOTATION);
+        annotationAttributes.put(MODE_ANNOTATION_FIELD_NAME, VersioningMode.ANNOTATION);
 
         final AnnotationMetadata importingClassMetadata = mock(AnnotationMetadata.class);
         when(importingClassMetadata.getAnnotationAttributes(
             eq(EnableApiVersioning.class.getName()), eq(false))
         ).thenReturn(annotationAttributes);
-
 
         // ACT
         final String[] imports = selector.selectImports(importingClassMetadata);
@@ -48,13 +50,12 @@ public class VersioningModeImportSelectorTest {
     public void selectImportsThrowsIllegalArgumentException() throws Exception {
         // ARRANGE
         final Map<String, Object> annotationAttributes = new HashMap<>(1);
-        annotationAttributes.put("mode", "UNKNOWN");
+        annotationAttributes.put(MODE_ANNOTATION_FIELD_NAME, "UNKNOWN");
 
         final AnnotationMetadata importingClassMetadata = mock(AnnotationMetadata.class);
         when(importingClassMetadata.getAnnotationAttributes(
             eq(EnableApiVersioning.class.getName()), eq(false))
         ).thenReturn(annotationAttributes);
-
 
         // ACT
         selector.selectImports(importingClassMetadata);

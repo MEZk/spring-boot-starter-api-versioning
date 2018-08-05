@@ -1,4 +1,4 @@
-package io.github.mezk.spring.boot.starters.api.versioning;
+package io.github.mezk.spring.boot.starters.api.versioning.configuration;
 
 import java.lang.reflect.Method;
 
@@ -13,11 +13,13 @@ import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondit
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import io.github.mezk.spring.boot.starters.api.versioning.annotations.ApiVersion;
+
 class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
     private final String prefix;
 
-    public ApiVersionRequestMappingHandlerMapping(String prefix) {
+    ApiVersionRequestMappingHandlerMapping(String prefix) {
         this.prefix = prefix;
     }
 

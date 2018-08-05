@@ -1,9 +1,8 @@
-package io.github.mezk.spring.boot.starters.api.versioning;
+package io.github.mezk.spring.boot.starters.api.versioning.configuration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
@@ -12,14 +11,18 @@ import org.junit.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 
+import io.github.mezk.spring.boot.starters.api.versioning.annotations.ApiVersion;
+
 public class ApiVersionRequestMappingHandlerMappingTest {
+
+    private static final String API_PATH_VERSION_PREFIX = "v";
 
     private ApiVersionRequestMappingHandlerMapping handlerMapping;
 
     @Test
     public void getMappingForMethodWhenRequestMappingInfoIsNull() throws Exception {
         // ARRANGE
-        handlerMapping = new ApiVersionRequestMappingHandlerMapping("v");
+        handlerMapping = new ApiVersionRequestMappingHandlerMapping(API_PATH_VERSION_PREFIX);
 
         final Method method = Object.class.getMethods()[0];
 
@@ -34,10 +37,9 @@ public class ApiVersionRequestMappingHandlerMappingTest {
     @Test
     public void getMappingForMethodWhenApiVersionAnnotationIsOnClass() throws Exception {
         // ARRANGE
-        final String apiPathPrefix = "v";
-        handlerMapping = new ApiVersionRequestMappingHandlerMapping(apiPathPrefix);
+        handlerMapping = new ApiVersionRequestMappingHandlerMapping(API_PATH_VERSION_PREFIX);
 
-        final Method method = ClassWithApiVersionAnnotationOnClass.class.getMethod("foo");
+        final Method method = ClassWithApiVersionAnnotationOnClass.class.getMethod("bar");
 
         // ACT
         final RequestMappingInfo mappingForMethod = handlerMapping.getMappingForMethod(
@@ -47,7 +49,7 @@ public class ApiVersionRequestMappingHandlerMappingTest {
         assertNotNull(mappingForMethod);
 
         assertEquals(
-            Collections.singleton("/" + apiPathPrefix + "1"),
+            Collections.singleton("/" + API_PATH_VERSION_PREFIX + "1"),
             mappingForMethod.getPatternsCondition().getPatterns()
         );
     }
@@ -55,8 +57,7 @@ public class ApiVersionRequestMappingHandlerMappingTest {
     @Test
     public void getMappingForMethodWhenApiVersionAnnotationIsAbsent() throws Exception {
         // ARRANGE
-        final String apiPathPrefix = "v";
-        handlerMapping = new ApiVersionRequestMappingHandlerMapping(apiPathPrefix);
+        handlerMapping = new ApiVersionRequestMappingHandlerMapping(API_PATH_VERSION_PREFIX);
 
         final Method method = ClassWithoutApiVersionAnnotationOnClass.class.getMethod("foo");
 
@@ -77,7 +78,7 @@ public class ApiVersionRequestMappingHandlerMappingTest {
     @RequestMapping
     private class ClassWithApiVersionAnnotationOnClass {
         @RequestMapping
-        public void foo() { }
+        public void bar() { }
     }
 
     @RequestMapping("/test")

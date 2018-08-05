@@ -1,13 +1,11 @@
-package io.github.mezk.spring.boot.starters.api.versioning;
+package io.github.mezk.spring.boot.starters.api.versioning.annotations;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.Assert;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+import io.github.mezk.spring.boot.starters.api.versioning.configuration.ApiVersioningAnnotationAutoConfiguration;
 
 public class VersioningModeImportSelector implements ImportSelector {
 

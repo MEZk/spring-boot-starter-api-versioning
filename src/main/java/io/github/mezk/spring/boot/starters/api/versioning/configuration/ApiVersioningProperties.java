@@ -1,4 +1,4 @@
-package io.github.mezk.spring.boot.starters.api.versioning;
+package io.github.mezk.spring.boot.starters.api.versioning.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+        "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+        "https://checkstyle.org/dtds/import_control_1_4.dtd">
+
+<import-control pkg="io.github.mezk.spring.boot.starters.api.versioning">
+
+    <subpackage name="annotations">
+        <allow class="java.lang.annotation.Retention"/>
+        <allow class="java.lang.annotation.RetentionPolicy"/>
+        <allow class="java.lang.annotation.Target"/>
+        <allow class="java.lang.annotation.ElementType"/>
+
+        <allow class="org.springframework.context.annotation.Import"/>
+        <allow class="org.springframework.core.annotation.AnnotationAttributes"/>
+        <allow class="org.springframework.context.annotation.ImportSelector"/>
+        <allow class="org.springframework.core.type.AnnotationMetadata"/>
+        <allow class="org.springframework.util.Assert"/>
+
+        <allow class="io.github.mezk.spring.boot.starters.api.versioning.configuration.ApiVersioningAnnotationAutoConfiguration"/>
+    </subpackage>
+
+    <subpackage name="configuration">
+        <allow class="java.lang.reflect.Method"/>
+
+        <allow class="org.springframework.core.annotation.AnnotationUtils"/>
+        <allow class="org.springframework.boot.autoconfigure.AutoConfigureAfter"/>
+        <allow class="org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration"/>
+        <allow class="org.springframework.boot.context.properties.EnableConfigurationProperties"/>
+        <allow class="org.springframework.boot.context.properties.ConfigurationProperties"/>
+        <allow class="org.springframework.context.annotation.Bean"/>
+        <allow class="org.springframework.context.annotation.Configuration"/>
+        <allow class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+        <allow class="org.springframework.web.servlet.mvc.method.RequestMappingInfo"/>
+        <allow pkg="org.springframework.web.servlet.mvc.condition"/>
+
+        <allow class="io.github.mezk.spring.boot.starters.api.versioning.configuration.ApiVersioningAnnotationAutoConfiguration"/>
+        <allow class="io.github.mezk.spring.boot.starters.api.versioning.annotations.ApiVersion"/>
+    </subpackage>
+
+</import-control>
