@@ -5,14 +5,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("api.versioning")
 public class ApiVersioningProperties {
 
-    private String apiPathPrefix;
+    private String apiPathVersionPrefix;
     private String defaultVersion;
 
-    public String getApiPathPrefix() {
-        return apiPathPrefix;
+    public String getApiPathVersionPrefix() {
+        return apiPathVersionPrefix;
     }
 
-    public void setApiPathPrefix(String apiPathPrefix) {
-        this.apiPathPrefix = apiPathPrefix;
+    public void setApiPathVersionPrefix(String apiPathVersionPrefix) {
+        this.apiPathVersionPrefix = apiPathVersionPrefix;
     }
 }

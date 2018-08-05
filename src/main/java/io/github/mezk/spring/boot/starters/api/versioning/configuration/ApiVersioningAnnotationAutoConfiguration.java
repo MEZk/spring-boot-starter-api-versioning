@@ -16,7 +16,7 @@ public class ApiVersioningAnnotationAutoConfiguration {
     public RequestMappingHandlerMapping requestMappingHandlerMapping(
         ApiVersioningProperties properties
     ) {
-        return new ApiVersionRequestMappingHandlerMapping(properties.getApiPathPrefix());
+        return new ApiVersionRequestMappingHandlerMapping(properties.getApiPathVersionPrefix());
     }
 
 }
