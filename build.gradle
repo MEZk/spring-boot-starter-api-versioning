@@ -1,6 +1,15 @@
 group 'io.github.mezk'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.thetaphi:forbiddenapis:2.5'
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 

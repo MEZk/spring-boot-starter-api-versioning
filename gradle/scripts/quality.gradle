@@ -1,4 +1,5 @@
 apply plugin: 'checkstyle'
+apply plugin: 'de.thetaphi.forbiddenapis'
 
 // CHECKSTYLE
 
@@ -21,4 +22,11 @@ tasks.withType(Checkstyle) {
         html.enabled true
         html.stylesheet resources.text.fromFile('config/checkstyle/checkstyle.xsl')
     }
+}
+
+// FORBIDDEN APIS
+
+forbiddenApis {
+    bundledSignatures = [ 'jdk-unsafe', 'jdk-deprecated', 'jdk-non-portable', 'jdk-system-out' ]
+    ignoreFailures = false
 }
