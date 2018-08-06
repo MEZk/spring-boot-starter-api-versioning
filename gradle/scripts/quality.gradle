@@ -1,5 +1,6 @@
 apply plugin: 'checkstyle'
 apply plugin: 'de.thetaphi.forbiddenapis'
+apply plugin: 'com.github.spotbugs'
 
 // CHECKSTYLE
 
@@ -29,4 +30,36 @@ tasks.withType(Checkstyle) {
 forbiddenApis {
     bundledSignatures = [ 'jdk-unsafe', 'jdk-deprecated', 'jdk-non-portable', 'jdk-system-out' ]
     ignoreFailures = false
+}
+
+forbiddenApisMain {
+    group 'verification'
+}
+
+forbiddenApisTest {
+    group 'verification'
+}
+
+// SPOTBUGS
+
+spotbugs {
+    toolVersion = '3.1.3'
+    effort = "max"
+    reportLevel = "high"
+    ignoreFailures = false
+}
+
+spotbugsMain {
+    group 'verification'
+}
+
+spotbugsTest {
+    group 'verification'
+}
+
+tasks.withType(SpotBugsTask) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }
