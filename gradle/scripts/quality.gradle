@@ -1,6 +1,7 @@
 apply plugin: 'checkstyle'
 apply plugin: 'de.thetaphi.forbiddenapis'
 apply plugin: 'com.github.spotbugs'
+apply plugin: "jacoco"
 
 // CHECKSTYLE
 
@@ -63,3 +64,43 @@ tasks.withType(SpotBugsTask) {
         html.enabled = true
     }
 }
+
+// JACOCO
+
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            element = 'BUNDLE'
+
+            limit {
+                counter = 'LINE'
+                value = 'MISSEDCOUNT'
+                maximum = 7
+            }
+            limit {
+                counter = 'BRANCH'
+                value = 'MISSEDCOUNT'
+                maximum = 1
+            }
+        }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/reports/jacoco")
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification
+check.dependsOn jacocoTestReport
+jacocoTestReport.dependsOn test
+jacocoTestCoverageVerification.mustRunAfter jacocoTestReport
