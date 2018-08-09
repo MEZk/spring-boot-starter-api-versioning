@@ -2,6 +2,7 @@ apply plugin: 'checkstyle'
 apply plugin: 'de.thetaphi.forbiddenapis'
 apply plugin: 'com.github.spotbugs'
 apply plugin: "jacoco"
+apply plugin: 'pmd'
 
 // CHECKSTYLE
 
@@ -98,6 +99,23 @@ jacocoTestReport {
         csv.enabled false
         html.destination file("${buildDir}/reports/jacoco")
     }
+}
+
+// PMD
+
+pmd {
+    toolVersion '6.6.0'
+    ignoreFailures = false
+    ruleSetFiles = files("config/pmd/pmd.xml")
+    consoleOutput true
+}
+
+pmdMain {
+    group 'verification'
+}
+
+pmdTest {
+    group 'verification'
 }
 
 check.dependsOn jacocoTestCoverageVerification

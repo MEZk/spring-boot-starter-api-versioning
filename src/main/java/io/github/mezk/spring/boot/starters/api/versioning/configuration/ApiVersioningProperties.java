@@ -15,4 +15,12 @@ public class ApiVersioningProperties {
     public void setApiPathVersionPrefix(String apiPathVersionPrefix) {
         this.apiPathVersionPrefix = apiPathVersionPrefix;
     }
+
+    public String getDefaultVersion() {
+        return defaultVersion;
+    }
+
+    public void setDefaultVersion(String defaultVersion) {
+        this.defaultVersion = defaultVersion;
+    }
 }

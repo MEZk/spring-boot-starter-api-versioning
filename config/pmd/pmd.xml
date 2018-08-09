@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<ruleset name="PMD ruleset for Checkstyle"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                            http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <rule ref="category/java/bestpractices.xml">
+        <!-- We do not care about this minor overhead, we are not Android application and we do not
+             want to change visibility of methods. Package-private visibility should be avoid almost
+             always. -->
+        <exclude name="AccessorMethodGeneration"/>
+        <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
+        <exclude name="GuardLogStatement"/>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace"/>
+    <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage"/>
+    <rule ref="category/java/bestpractices.xml/SystemPrintln"/>
+
+    <!--Excluded till https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
+    <!--<rule ref="category/java/documentation.xml">-->
+        <!--<exclude name="CommentSize"/>-->
+    <!--</rule>-->
+
+    <rule ref="category/java/codestyle.xml">
+        <!-- Opposite to UnnecessaryConstructor. -->
+        <exclude name="AtLeastOneConstructor"/>
+        <!-- Turning a local variable to the field may create design problems and extend the scope of
+               the variable. -->
+        <exclude name="AvoidFinalLocalVariable"/>
+        <!-- Conflicts with names that does not mean in/out. -->
+        <exclude name="AvoidPrefixingMethodParameters"/>
+        <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
+             it is meaningful only if you do not call implicit constructor of the base class. -->
+        <exclude name="CallSuperInConstructor"/>
+        <!-- Pollutes code with modifiers. -->
+        <exclude name="LocalVariableCouldBeFinal"/>
+        <!-- Pollutes the code with modifiers. We use the ParameterAssignmentCheck to protect the
+             parameters. -->
+        <exclude name="MethodArgumentCouldBeFinal"/>
+        <!-- It is possible only in functional languages and fanatically-pristine code, without
+             additional option that are done at ReturnCountExtendedCheck it is not a good rule. -->
+        <exclude name="OnlyOneReturn"/>
+        <!-- We use CheckstyleCustomShortVariable, to control the length and skip Override methods. -->
+        <exclude name="ShortVariable"/>
+
+        <!--Excluded till https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
+        <exclude name="CommentDefaultAccessModifier"/>
+    </rule>
+    <rule ref="category/java/codestyle.xml/AbstractNaming"/>
+    <rule ref="category/java/codestyle.xml/ConfusingTernary"/>
+    <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract"/>
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <!-- Nothing bad with the long and descriptive variable names if only they fit the line,
+                 but still keep it reasonable. -->
+            <property name="minimum" value="45"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ShortClassName"/>
+    <rule ref="category/java/errorprone.xml">
+        <!-- That rule is not practical, no options to allow some magic numbers,
+             we will use our implementation. -->
+        <exclude name="AvoidLiteralsInIfCondition"/>
+        <!-- It is not our goal for now to keep all Serializable, maybe in the future. -->
+        <exclude name="BeanMembersShouldSerialize"/>
+        <!-- We need compare by ref as Tree structure is immutable, we can easily
+             rely on refs. -->
+        <exclude name="CompareObjectsWithEquals"/>
+        <!-- Too many false positives. -->
+        <exclude name="DataflowAnomalyAnalysis"/>
+        <!-- This rule does not have any option, unreasonable to use. -->
+        <exclude name="MissingBreakInSwitch"/>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+        <properties>
+            <!-- Annotations like '@SuppressWarnings' don't need to be checked, it is better to keep their
+                   strings connected to the annotation instead of separating. -->
+            <property name="skipAnnotations" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
+        <properties>
+            <property name="allowCommentedBlocks" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/errorprone.xml/DoNotCallSystemExit"/>
+
+    <rule ref="category/java/design.xml">
+        <!-- Too much false-positives on the check classes.
+             We do not follow the philosophy of complete encapsulation, we like data classes
+             (preferable immutable) to transfer content from one part to another.
+             There is no way to configure the rule (it has no properties). -->
+        <exclude name="DataClass"/>
+        <!-- Too much alarms on the check classes, we will never move logic out of the check,
+             each check is an independent logic container. -->
+        <exclude name="GodClass"/>
+        <!-- Too many violations, will be suppressed until we find out how use these metrics. -->
+        <exclude name="LawOfDemeter"/>
+        <!-- We use our ImportControl to control imports in packages and classes. -->
+        <exclude name="LoosePackageCoupling"/>
+    </rule>
+    <rule ref="category/java/design.xml/AvoidCatchingGenericException"/>
+    <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
+        <properties>
+            <!-- The default is 3 but we try to use single point of exit from the method and that require
+                 some extra IFs. -->
+            <property name="problemDepth" value="4"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes"/>
+    <rule ref="category/java/design.xml/CouplingBetweenObjects"/>
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="32"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="classReportLevel" value="76"/>
+            <property name="methodReportLevel" value="11"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyFields"/>
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="20"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ExcessiveClassLength"/>
+    <rule ref="category/java/design.xml/ExcessiveParameterList"/>
+    <rule ref="category/java/design.xml/ExcessiveImports"/>
+
+    <rule ref="category/java/multithreading.xml"/>
+    <rule ref="category/java/multithreading.xml/AvoidSynchronizedAtMethodLevel"/>
+
+    <rule ref="category/java/performance.xml">
+        <!-- Produces more false positives than real problems. -->
+        <exclude name="AvoidInstantiatingObjectsInLoops"/>
+        <!-- Conflicts with the ToArrayCallWithZeroLengthArrayArgument check from the Idea.
+             This rule is based on a study by Aleksey Shipilёv
+             https://shipilev.net/blog/2016/arrays-wisdom-ancients/
+             However, in modern JVM the result is different:
+             Benchmark (size)  (type)   Mode  Cnt Score    Error  Units
+             simple     1000  arraylist avgt  15  400.156   4.154 ns/op
+             sized      1000  arraylist avgt  15 1051.462  26.820 ns/op
+             zero       1000  arraylist avgt  15  743.794  27.400 ns/op
+             simple     1000  hashset   avgt  15 4728.179 130.822 ns/op
+             sized      1000  hashset   avgt  15 4960.655 179.637 ns/op
+             zero       1000  hashset   avgt  15 5101.816 159.180 ns/op
+             The advantages of this rule are questionable, and the flaws are obvious.
+         -->
+        <exclude name="OptimizableToArrayCall"/>
+        <!-- Not configurable, decreases readability. -->
+        <exclude name="UseStringBufferForStringAppends"/>
+    </rule>
+    <rule ref="category/java/performance.xml/AvoidUsingShortType"/>
+
+    <!-- Checkstyle rules. -->
+    <rule name="CheckstyleCustomShortVariable"
+          message="Avoid variables with short names that shorter than 2 symbols: {0}"
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+          externalInfoUrl="">
+        <description>
+            Fields, local variables, or parameter names that are very short are not helpful to the reader.
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+          //VariableDeclaratorId[string-length(@Image) < 2]
+          [not(ancestor::ForInit)]
+          [not(../../VariableDeclarator and ../../../LocalVariableDeclaration
+                and ../../../../ForStatement)]
+          [not((ancestor::FormalParameter) and (ancestor::TryStatement))]
+          [not(ancestor::ClassOrInterfaceDeclaration[
+              //MarkerAnnotation/Name[pmd-java:typeof(@Image, 'java.lang.Override', 'Override')]])]
+          ]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+</ruleset>
