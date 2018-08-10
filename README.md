@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/MEZk/spring-boot-starter-api-versioning.svg?branch=master)](https://travis-ci.org/MEZk/spring-boot-starter-api-versioning) [![codecov](https://codecov.io/gh/MEZk/spring-boot-starter-api-versioning/branch/master/graph/badge.svg)](https://codecov.io/gh/MEZk/spring-boot-starter-api-versioning)
