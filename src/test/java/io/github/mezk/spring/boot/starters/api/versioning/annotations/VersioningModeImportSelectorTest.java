@@ -26,7 +26,7 @@ public class VersioningModeImportSelectorTest {
     }
 
     @Test
-    public void selectImportsWhenVersionModeIsAnnotation() throws Exception {
+    public void selectImportsWhenVersionModeIsAnnotation() {
         // ARRANGE
         final Map<String, Object> annotationAttributes = new HashMap<>(1);
         annotationAttributes.put(MODE_ANNOTATION_FIELD_NAME, VersioningMode.ANNOTATION);
@@ -41,13 +41,14 @@ public class VersioningModeImportSelectorTest {
 
         // ASSERT
         assertArrayEquals(
+            "Imports selected by import selector are not correct",
             new String[]{ApiVersioningAnnotationAutoConfiguration.class.getName()},
             imports
         );
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void selectImportsThrowsIllegalArgumentException() throws Exception {
+    public void selectImportsThrowsIllegalArgumentException() {
         // ARRANGE
         final Map<String, Object> annotationAttributes = new HashMap<>(1);
         annotationAttributes.put(MODE_ANNOTATION_FIELD_NAME, "UNKNOWN");

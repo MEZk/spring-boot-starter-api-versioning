@@ -1,7 +1,6 @@
 package io.github.mezk.spring.boot.starters.api.versioning.configuration;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.lang.reflect.Method;
@@ -16,11 +15,13 @@ import io.github.mezk.spring.boot.starters.api.versioning.annotations.ApiVersion
 public class ApiVersionRequestMappingHandlerMappingTest {
 
     private static final String API_PATH_VERSION_PREFIX = "v";
+    private static final String ACTUAL_API_PATH_IS_NOT_CORRECT_MSG =
+        "Actual API path is not correct";
 
     private ApiVersionRequestMappingHandlerMapping handlerMapping;
 
     @Test
-    public void getMappingForMethodWhenRequestMappingInfoIsNull() throws Exception {
+    public void getMappingForMethodWhenRequestMappingInfoIsNull() {
         // ARRANGE
         handlerMapping = new ApiVersionRequestMappingHandlerMapping(API_PATH_VERSION_PREFIX);
 
@@ -31,11 +32,12 @@ public class ApiVersionRequestMappingHandlerMappingTest {
             method, Object.class);
 
         // ASSERT
-        assertNull(mappingForMethod);
+        assertNull("Mapping for method must be null", mappingForMethod);
     }
 
     @Test
-    public void getMappingForMethodWhenApiVersionAnnotationIsOnClass() throws Exception {
+    public void getMappingForMethodWhenApiVersionAnnotationIsOnClass()
+            throws NoSuchMethodException {
         // ARRANGE
         handlerMapping = new ApiVersionRequestMappingHandlerMapping(API_PATH_VERSION_PREFIX);
 
@@ -46,16 +48,15 @@ public class ApiVersionRequestMappingHandlerMappingTest {
             method, ClassWithApiVersionAnnotationOnClass.class);
 
         // ASSERT
-        assertNotNull(mappingForMethod);
-
         assertEquals(
+            ACTUAL_API_PATH_IS_NOT_CORRECT_MSG,
             Collections.singleton("/" + API_PATH_VERSION_PREFIX + "1"),
             mappingForMethod.getPatternsCondition().getPatterns()
         );
     }
 
     @Test
-    public void getMappingForMethodWhenApiVersionAnnotationIsAbsent() throws Exception {
+    public void getMappingForMethodWhenApiVersionAnnotationIsAbsent() throws NoSuchMethodException {
         // ARRANGE
         handlerMapping = new ApiVersionRequestMappingHandlerMapping(API_PATH_VERSION_PREFIX);
 
@@ -66,9 +67,8 @@ public class ApiVersionRequestMappingHandlerMappingTest {
             method, ClassWithoutApiVersionAnnotationOnClass.class);
 
         // ASSERT
-        assertNotNull(mappingForMethod);
-
         assertEquals(
+            ACTUAL_API_PATH_IS_NOT_CORRECT_MSG,
             Collections.singleton("/test"),
             mappingForMethod.getPatternsCondition().getPatterns()
         );

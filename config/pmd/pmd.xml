@@ -131,7 +131,9 @@
     <rule ref="category/java/design.xml/ExcessiveParameterList"/>
     <rule ref="category/java/design.xml/ExcessiveImports"/>
 
-    <rule ref="category/java/multithreading.xml"/>
+    <rule ref="category/java/multithreading.xml">
+        <exclude name="UseConcurrentHashMap"/>
+    </rule>
     <rule ref="category/java/multithreading.xml/AvoidSynchronizedAtMethodLevel"/>
 
     <rule ref="category/java/performance.xml">
