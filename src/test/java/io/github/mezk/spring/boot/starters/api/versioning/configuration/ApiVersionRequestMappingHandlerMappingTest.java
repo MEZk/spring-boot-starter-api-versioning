@@ -78,14 +78,18 @@ public class ApiVersionRequestMappingHandlerMappingTest {
     @RequestMapping
     private class ClassWithApiVersionAnnotationOnClass {
         @RequestMapping
-        public void bar() { }
+        public void bar() {
+            // empty implementation
+        }
     }
 
     @RequestMapping("/test")
     private class ClassWithoutApiVersionAnnotationOnClass {
 
         @RequestMapping
-        public void foo() { }
+        public void foo() {
+            // empty implementation
+        }
 
     }
 }

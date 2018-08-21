@@ -25,11 +25,9 @@
     <!--</module>-->
 
     <!-- Javadoc Comments -->
-    <!--Uncomment in the scope of https://github.com/MEZk/spring-boot-starter-api-versioning/issues/2-->
-
-    <!--<module name="JavadocPackage">-->
-        <!--<property name="allowLegacy" value="false"/>-->
-    <!--</module>-->
+    <module name="JavadocPackage">
+        <property name="allowLegacy" value="false"/>
+    </module>
 
     <!-- Miscellaneous -->
     <module name="NewlineAtEndOfFile"/>
@@ -189,11 +187,10 @@
 
         <!-- Class Design -->
 
-        <!--Uncomment in https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
-        <!--<module name="DesignForExtension">-->
-            <!--<property name="ignoredAnnotations"-->
-                      <!--value="Override, Test, Before, After, BeforeClass, AfterClass"/>-->
-        <!--</module>-->
+        <module name="DesignForExtension">
+            <property name="ignoredAnnotations"
+                      value="Override, Test, Before, After, BeforeClass, AfterClass"/>
+        </module>
 
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
@@ -319,13 +316,13 @@
         <!-- Javadoc Comments -->
         <module name="AtclauseOrder"/>
 
-        <!--Uncomment in https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
-        <!--<module name="JavadocMethod">-->
-            <!--<property name="allowUndeclaredRTE" value="true"/>-->
-            <!--<property name="allowThrowsTagsForSubclasses" value="true"/>-->
-            <!--<property name="allowMissingPropertyJavadoc" value="true"/>-->
-            <!--<property name="validateThrows" value="true"/>-->
-        <!--</module>-->
+        <module name="JavadocMethod">
+            <property name="scope" value="public"/>
+            <property name="allowUndeclaredRTE" value="true"/>
+            <property name="allowThrowsTagsForSubclasses" value="true"/>
+            <property name="allowMissingPropertyJavadoc" value="true"/>
+            <property name="validateThrows" value="true"/>
+        </module>
 
         <module name="JavadocParagraph"/>
         <module name="JavadocStyle">
@@ -333,23 +330,17 @@
         </module>
         <module name="JavadocTagContinuationIndentation"/>
 
-        <!--Uncomment in https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
-        <!--<module name="JavadocType">-->
-            <!--&lt;!&ndash; avoid errors on tag '@noinspection' &ndash;&gt;-->
-            <!--<property name="allowUnknownTags" value="true"/>-->
-        <!--</module>-->
-
-        <!--Uncomment in https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
-        <!--<module name="JavadocVariable"/>-->
+        <module name="JavadocType">
+            <!-- avoid errors on tag '@noinspection' -->
+            <property name="allowUnknownTags" value="true"/>
+        </module>
 
         <module name="NonEmptyAtclauseDescription"/>
         <module name="SingleLineJavadoc"/>
 
-        <!--Uncomment in https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
-        <!--<module name="WriteTag"/>-->
+        <module name="WriteTag"/>
 
-        <!--Uncomment in https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
-        <!--<module name="SummaryJavadoc"/>-->
+        <module name="SummaryJavadoc"/>
 
         <!-- Metrics -->
         <module name="BooleanExpressionComplexity">

@@ -17,10 +17,16 @@
     <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage"/>
     <rule ref="category/java/bestpractices.xml/SystemPrintln"/>
 
-    <!--Excluded till https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
-    <!--<rule ref="category/java/documentation.xml">-->
-        <!--<exclude name="CommentSize"/>-->
-    <!--</rule>-->
+    <rule ref="category/java/documentation.xml">
+        <exclude name="CommentSize"/>
+    </rule>
+    <rule ref="category/java/documentation.xml/CommentRequired">
+        <properties>
+            <property name="publicMethodCommentRequirement" value="Required"/>
+            <property name="protectedMethodCommentRequirement" value="Required"/>
+            <property name="fieldCommentRequirement" value="Ignored"/>
+        </properties>
+    </rule>
 
     <rule ref="category/java/codestyle.xml">
         <!-- Opposite to UnnecessaryConstructor. -->
@@ -44,7 +50,6 @@
         <!-- We use CheckstyleCustomShortVariable, to control the length and skip Override methods. -->
         <exclude name="ShortVariable"/>
 
-        <!--Excluded till https://github.com/MEZk/spring-boot-starter-api-versioning/issues/14-->
         <exclude name="CommentDefaultAccessModifier"/>
     </rule>
     <rule ref="category/java/codestyle.xml/AbstractNaming"/>

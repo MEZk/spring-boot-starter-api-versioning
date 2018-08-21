@@ -10,6 +10,7 @@
         <allow class="java.lang.annotation.RetentionPolicy"/>
         <allow class="java.lang.annotation.Target"/>
         <allow class="java.lang.annotation.ElementType"/>
+        <allow class="java.lang.annotation.Documented"/>
 
         <allow class="org.springframework.context.annotation.Import"/>
         <allow class="org.springframework.core.annotation.AnnotationAttributes"/>
@@ -23,6 +24,7 @@
     <subpackage name="configuration">
         <allow class="java.lang.reflect.Method"/>
 
+        <allow class="org.springframework.stereotype.Controller"/>
         <allow class="org.springframework.core.annotation.AnnotationUtils"/>
         <allow class="org.springframework.boot.autoconfigure.AutoConfigureAfter"/>
         <allow class="org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration"/>
@@ -32,6 +34,7 @@
         <allow class="org.springframework.context.annotation.Configuration"/>
         <allow class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
         <allow class="org.springframework.web.servlet.mvc.method.RequestMappingInfo"/>
+        <allow class="org.springframework.web.bind.annotation.RequestMapping"/>
         <allow pkg="org.springframework.web.servlet.mvc.condition"/>
 
         <allow class="io.github.mezk.spring.boot.starters.api.versioning.configuration.ApiVersioningAnnotationAutoConfiguration"/>

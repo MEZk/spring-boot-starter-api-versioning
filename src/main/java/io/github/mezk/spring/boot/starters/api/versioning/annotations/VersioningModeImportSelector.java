@@ -7,8 +7,19 @@ import org.springframework.util.Assert;
 
 import io.github.mezk.spring.boot.starters.api.versioning.configuration.ApiVersioningAnnotationAutoConfiguration;
 
+/**
+ * Selects which api versioning autoconfiguration will be ebanled based
+ * on the value of {@link EnableApiVersioning#mode} on the importing {@code @Configuration} class.
+ *
+ * @author Andrei Selkin
+ * @see EnableApiVersioning
+ * @see ApiVersioningAnnotationAutoConfiguration
+ */
 public class VersioningModeImportSelector implements ImportSelector {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
         final AnnotationAttributes attributes = AnnotationAttributes.fromMap(
