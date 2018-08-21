@@ -13,10 +13,12 @@ checkstyle {
 
 checkstyleMain {
     source ='src/main/java'
+    group = 'verification'
 }
 
 checkstyleTest {
     source ='src/test/java'
+    group = 'verification'
 }
 
 tasks.withType(Checkstyle) {
@@ -106,16 +108,17 @@ jacocoTestReport {
 pmd {
     toolVersion '6.6.0'
     ignoreFailures = false
-    ruleSetFiles = files("config/pmd/pmd.xml")
     consoleOutput true
 }
 
 pmdMain {
     group 'verification'
+    ruleSetFiles = files("config/pmd/pmd.xml")
 }
 
 pmdTest {
     group 'verification'
+    ruleSetFiles = files("config/pmd/pmd-test.xml")
 }
 
 check.dependsOn jacocoTestCoverageVerification

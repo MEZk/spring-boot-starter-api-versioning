@@ -5,5 +5,11 @@
         "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 
 <suppressions>
+    <suppress checks="LineLength" files="EnableApiVersioning.java" lines="13,37"/>
+
+    <suppress message="Missing a Javadoc comment|Missing package-info.java file|
+                       |Expected @throws tag for"
+              files=".*[\\/]src[\\/](test)[\\/]"/>
+    <suppress checks="WriteTag" files=".*[\\/]src[\\/](test)[\\/]"/>
 
 </suppressions>
