@@ -14,8 +14,3 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Contains api versioning annotations and associated classes.
- */
-package io.github.mezk.spring.boot.starters.api.versioning.annotations;
