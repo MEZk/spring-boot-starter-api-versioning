@@ -17,12 +17,11 @@
     </module>
 
     <!-- Headers -->
-    <!--Uncomment in the scope of https://github.com/MEZk/spring-boot-starter-api-versioning/issues/2-->
-    <!--<module name="Header">-->
-        <!--<property name="headerFile" value=""/>-->
-        <!--<property name="fileExtensions" value="java"/>-->
-        <!--<property name="id" value="header"/>-->
-    <!--</module>-->
+    <module name="Header">
+        <property name="headerFile" value="config/checkstyle/header.txt"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="id" value="header"/>
+    </module>
 
     <!-- Javadoc Comments -->
     <module name="JavadocPackage">
